@@ -4,7 +4,7 @@
 GET {{baseUrl}}/api/users
 ###
 
-# User registration validation
+# User registration with validation
 POST {{baseUrl}}/api/users
 Content-Type: application/json
 
@@ -13,3 +13,19 @@ Content-Type: application/json
     "email":"roman.munar1@gmail.com",
     "password":"supersecure"
 }
+
+###
+
+# User login
+POST {{baseUrl}}/api/auth
+Content-Type: application/json
+
+{
+    "email":"roman.munar1@gmail.com",
+    "password":"supersecure"
+}
+
+###
+# Authentication for protected routes
+GET {{baseUrl}}/api/auth
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5ZTcyZjc2YmU0ZGI3NDIwNjJjODcyIn0sImlhdCI6MTU4NzQ0MjQyMywiZXhwIjoxNTg3ODAyNDIzfQ.q6hVN71Eu75I4pmA2qAmzR2HZ0aCwdKt84XxSzzyL64
