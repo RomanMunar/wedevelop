@@ -1,7 +1,6 @@
 @baseUrl = http://localhost:5000
+@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5ZjljOTlhOWM0NzcyMjM0YTlkMmE5In0sImlhdCI6MTU4NzUxOTcwNiwiZXhwIjoxNTg3ODc5NzA2fQ.tsNTRqsmW_0VLI9Kn4ekbORauHdWAu2MCnTU7OT2KIU
 
-
-GET {{baseUrl}}/api/users
 ###
 
 # User registration with validation
@@ -9,11 +8,10 @@ POST {{baseUrl}}/api/users
 Content-Type: application/json
 
 {
-    "name": "Test admin",
-    "email":"roman.munar1@gmail.com",
+    "name": "John Boi",
+    "email":"Boe2@john.com",
     "password":"supersecure"
 }
-
 ###
 
 # User login
@@ -21,11 +19,50 @@ POST {{baseUrl}}/api/auth
 Content-Type: application/json
 
 {
-    "email":"roman.munar1@gmail.com",
+    "email":"Boe2@john.com",
     "password":"supersecure"
+}
+#######################################################################################
+###
+
+# Authentication for protected routes
+GET {{baseUrl}}/api/auth
+x-auth-token:{{token}}
+
+########################################################################################
+###
+
+# Get all profiles
+GET {{baseUrl}}/api/profile
+###
+# Get the current users profile
+GET {{baseUrl}}/api/profile/me
+x-auth-token:{{token}}
+###
+# Creates or updates the current users profile
+POST {{baseUrl}}/api/profile
+Content-Type: application/json
+x-auth-token:{{token}}
+
+{
+    "company":"john co.",
+    "status":"boe",
+    "website":"https://romanmunar.github.io",
+    "skills":"MongoDB,Express,Angular,Typescript",
+    "location":"Bataan, Philippines",
+    "bio":"Instructor",
+    "githubusername":"romanmunar11",
+    "twitter":"https://twitter.com/romanmunar",
+    "facebook":"https://facebook.com/romanmunar",
+    "youtube":"https://youtube.com/romanmunar",
+    "instagram":"https://instagram.com/romanmunar"
 }
 
 ###
-# Authentication for protected routes
-GET {{baseUrl}}/api/auth
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5ZTcyZjc2YmU0ZGI3NDIwNjJjODcyIn0sImlhdCI6MTU4NzQ0MjQyMywiZXhwIjoxNTg3ODAyNDIzfQ.q6hVN71Eu75I4pmA2qAmzR2HZ0aCwdKt84XxSzzyL64
+# Get users profile by user id
+GET {{baseUrl}}/api/profile/user/5e9f9c99a9c4772234a9d2a9
+
+###
+# Deletes users profile and posts
+DELETE {{baseUrl}}/api/profile/
+x-auth-token:{{token}}
