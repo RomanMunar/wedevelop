@@ -1,5 +1,6 @@
 {
   "mongoURI": "mongodb://localhost:27017/wedevelop",
-  "jwtSecret":"secrethihi"
-
+  "jwtSecret": "secrethihi",
+  "githubClientId": "51e227fbcef67520d0ef",
+  "githubSecret": "6e297833a730587d9ebf53be1d53c78fb81f1373"
 }
