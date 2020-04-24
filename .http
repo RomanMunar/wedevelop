@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:5000
-@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWU5ZjljOTlhOWM0NzcyMjM0YTlkMmE5In0sImlhdCI6MTU4NzUxOTcwNiwiZXhwIjoxNTg3ODc5NzA2fQ.tsNTRqsmW_0VLI9Kn4ekbORauHdWAu2MCnTU7OT2KIU
+@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVhMjk4ZTllYjVmYjMxZWExMGZiMDFmIn0sImlhdCI6MTU4NzcxNDI4MSwiZXhwIjoxNTg4MDc0MjgxfQ.N_gTuJF67APOFX1FGNOYyWjmbkD28xfJBDm8uBJbSfc
 
 ###
 
@@ -60,9 +60,44 @@ x-auth-token:{{token}}
 
 ###
 # Get users profile by user id
-GET {{baseUrl}}/api/profile/user/5e9f9c99a9c4772234a9d2a9
+GET {{baseUrl}}/api/profile/user/5ea298e9eb5fb31ea10fb01f
 
 ###
 # Deletes users profile and posts
 DELETE {{baseUrl}}/api/profile/
+x-auth-token:{{token}}
+
+###
+# Create or update a users experience
+PUT {{baseUrl}}/api/profile/experience
+Content-Type: application/json
+x-auth-token:{{token}}
+
+{
+    "title":"Backend Developer",
+    "company":"Microsoft",
+    "from":"08-12-2009",
+    "current":false
+}
+###
+# Deletes a users experience by exp id
+DELETE {{baseUrl}}/api/profile/experience/5ea29ab90753eb1f66b49554
+x-auth-token:{{token}}
+
+###
+# Create or update a users education
+PUT {{baseUrl}}/api/profile/education
+Content-Type: application/json
+x-auth-token:{{token}}
+
+{
+    "school":"STI College",
+    "degree":"Computer Science",
+    "fieldofstudy":"Software Engineering",
+    "from":"08-12-2009",
+    "current":false
+}
+###
+# Deletes a users education by exp id
+DELETE {{baseUrl}}/api/profile/education/5ea29ab90753eb1f66b49554
 x-auth-token:{{token}}
