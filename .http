@@ -1,6 +1,5 @@
 @baseUrl = http://localhost:5000
-@token =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVhMjk4ZTllYjVmYjMxZWExMGZiMDFmIn0sImlhdCI6MTU4NzcxNDI4MSwiZXhwIjoxNTg4MDc0MjgxfQ.N_gTuJF67APOFX1FGNOYyWjmbkD28xfJBDm8uBJbSfc
-
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVhMzg2OTgzYzNjNTAzMzVjNjVhZGE0In0sImlhdCI6MTU4Nzc3NTQxNCwiZXhwIjoxNTg4MTM1NDE0fQ.t0crcrGffzDjADG3YOM7Ossjg8CcVCYHRlusDYDV0eA
 ###
 
 # User registration with validation
@@ -8,8 +7,8 @@ POST {{baseUrl}}/api/users
 Content-Type: application/json
 
 {
-    "name": "John Boi",
-    "email":"Boe2@john.com",
+    "name": "Test test",
+    "email":"TEST@test.com",
     "password":"supersecure"
 }
 ###
@@ -19,17 +18,18 @@ POST {{baseUrl}}/api/auth
 Content-Type: application/json
 
 {
-    "email":"Boe2@john.com",
+    "email":"TEST@test.com",
     "password":"supersecure"
 }
-#######################################################################################
+
+#############################################################################################################
 ###
 
 # Authentication for protected routes
 GET {{baseUrl}}/api/auth
 x-auth-token:{{token}}
 
-########################################################################################
+#############################################################################################################
 ###
 
 # Get all profiles
@@ -45,7 +45,7 @@ Content-Type: application/json
 x-auth-token:{{token}}
 
 {
-    "company":"john co.",
+    "company":"test co.",
     "status":"boe",
     "website":"https://romanmunar.github.io",
     "skills":"MongoDB,Express,Angular,Typescript",
@@ -60,7 +60,7 @@ x-auth-token:{{token}}
 
 ###
 # Get users profile by user id
-GET {{baseUrl}}/api/profile/user/5ea298e9eb5fb31ea10fb01f
+GET {{baseUrl}}/api/profile/user/5ea386983c3c50335c65ada4
 
 ###
 # Deletes users profile and posts
@@ -100,4 +100,54 @@ x-auth-token:{{token}}
 ###
 # Deletes a users education by exp id
 DELETE {{baseUrl}}/api/profile/education/5ea29ab90753eb1f66b49554
+x-auth-token:{{token}}
+###
+# Get github repositories of user by user name
+GET {{baseUrl}}/api/profile/github/romanmunar
+
+#############################################################################################################
+### POST ROUTE
+# Create a post
+POST {{baseUrl}}/api/post/
+Content-Type: application/json
+x-auth-token:{{token}}
+
+{
+    "text":"Delete test post hehe"
+}
+
+###
+# Get all posts
+GET {{baseUrl}}/api/post
+###
+# Get a posts by post id
+GET {{baseUrl}}/api/post/5ea3d5e11ada26687f3ffecb
+###
+# Deletes a post by post id
+DELETE {{baseUrl}}/api/post/5ea3ccfcabe7f35c4c126b4b
+x-auth-token:{{token}}
+
+
+###
+# Like a post by post id
+PUT {{baseUrl}}/api/post/like/5ea3d0ca6aaf00624b8a4ab4
+x-auth-token:{{token}}
+
+###
+# Unlike a post by post id
+PUT {{baseUrl}}/api/post/unlike/5ea3d0ca6aaf00624b8a4ab4
+x-auth-token:{{token}}
+
+###
+# Comment a post by post id
+POST {{baseUrl}}/api/post/comment/5ea3d5e11ada26687f3ffecb
+Content-Type: application/json
+x-auth-token:{{token}}
+
+{
+    "text":"Delete comment test hihi"
+}
+###
+#
+DELETE {{baseUrl}}/api/post/comment/5ea3d5e11ada26687f3ffecb/5ea3d68da3d0a7698ba5f875
 x-auth-token:{{token}}
