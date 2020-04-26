@@ -1,4 +1,4 @@
-import React,{Fragment,useState} from 'react';
+import React, { Fragment, useState } from 'react';
 // import axios from 'axios'
 
 const Login = () => {
@@ -73,7 +73,7 @@ const Login = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
   );
