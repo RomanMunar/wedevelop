@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:5000
-@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVhMzg2OTgzYzNjNTAzMzVjNjVhZGE0In0sImlhdCI6MTU4Nzc3NTQxNCwiZXhwIjoxNTg4MTM1NDE0fQ.t0crcrGffzDjADG3YOM7Ossjg8CcVCYHRlusDYDV0eA
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVhNjVkZDFiOWRhOTQ2MzQxNTM4NGQyIn0sImlhdCI6MTU4Nzk2MTI5OCwiZXhwIjoxNTg4MzIxMjk4fQ.c2w6S4cVXs2gsGq5vHBZUgY_-qoKsllX6ToiepQfumE
 ###
 
 # User registration with validation
@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
     "name": "Test test",
-    "email":"TEST@test.com",
+    "email":"99@test.com",
     "password":"supersecure"
 }
 ###

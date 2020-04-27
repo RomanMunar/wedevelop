@@ -12,13 +12,10 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
 const App = () => {
   useEffect(() => {
-    store.dispatch(loadUser);
+    setAuthToken(localStorage.token);
+    store.dispatch(loadUser());
   }, []);
   return (
     <Provider store={store}>
