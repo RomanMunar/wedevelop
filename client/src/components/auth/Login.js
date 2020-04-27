@@ -45,7 +45,7 @@ const Login = ({ login, isAuthenticated }) => {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
+            // minLength="6"
             value={password}
             onChange={(e) => onChange(e)}
           />
@@ -60,12 +60,12 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-})
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
+  isAuthenticated: PropTypes.bool
 };
 
 export default connect(mapStateToProps, { login })(Login);
