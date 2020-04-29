@@ -2,13 +2,17 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
 import { getCurrentProfile } from '../../actions/profile';
+import setAuthToken from '../../utils/setAuthToken';
+
 const Dashboard = ({
   getCurrentProfile,
   auth: { user },
-  profile: { profile,loading }
+  profile: { profile, loading }
 }) => {
   useEffect(() => {
+    setAuthToken(localStorage.token);
     getCurrentProfile();
   }, [getCurrentProfile]);
   return loading && profile === null ? (
@@ -20,7 +24,9 @@ const Dashboard = ({
         <i className="fas fa-user"></i> Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <Fragment>profile</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>no profile</Fragment>
       )}

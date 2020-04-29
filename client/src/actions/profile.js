@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR, SET_ALERT } from './types';
+import { GET_PROFILE, PROFILE_ERROR } from './types';
 
 //Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -11,6 +11,7 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: PROFILE_ERROR,
       payload: {
@@ -41,9 +42,7 @@ export const createProfile = (formData, history, edit = false) => async (
 
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
-    if (!edit) {
-      history.push('/dashboard');
-    }
+    history.push('/dashboard');
   } catch (err) {
     const errors = err.response.data.errors;
 
