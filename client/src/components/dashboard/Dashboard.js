@@ -9,13 +9,13 @@ import setAuthToken from '../../utils/setAuthToken';
 const Dashboard = ({
   getCurrentProfile,
   auth: { user },
-  profile: { profile, loading }
+  profile: { profile }
 }) => {
   useEffect(() => {
     setAuthToken(localStorage.token);
     getCurrentProfile();
   }, [getCurrentProfile]);
-  return loading && profile === null ? (
+  return profile === null ? (
     <Spinner />
   ) : (
     <Fragment>

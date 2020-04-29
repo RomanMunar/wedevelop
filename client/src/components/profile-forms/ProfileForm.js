@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,17 +20,17 @@ const initialState = {
 };
 
 const ProfileForm = ({
+  profile: { profile, loading },
   createProfile,
-  history,
-  profile: { profile, loading }
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
+
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    console.log('Hello useeffect');
-    console.log(profile);
-    getCurrentProfile();
+    if (!profile) getCurrentProfile();
     if (!loading && profile) {
       const profileData = { ...initialState };
       for (const key in profile) {
@@ -43,14 +43,8 @@ const ProfileForm = ({
         profileData.skills = profileData.skills.join(', ');
       setFormData(profileData);
     }
-  }, [loading, profile]);
+  }, [loading, getCurrentProfile, profile]);
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
-    e.preventDefault();
-    createProfile(formData, history, profile ? true : false);
-  };
   const {
     company,
     website,
@@ -65,6 +59,15 @@ const ProfileForm = ({
     youtube,
     instagram
   } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history, profile ? true : false);
+  };
+
   return (
     <Fragment>
       <h1 className="large text-primary">Edit Your Profile</h1>
@@ -240,13 +243,15 @@ const ProfileForm = ({
 };
 
 ProfileForm.propTypes = {
-  profile: PropTypes.object,
-  createProfile: PropTypes.func.isRequired
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
+
 const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { createProfile })(
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
   withRouter(ProfileForm)
 );
