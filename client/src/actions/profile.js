@@ -197,7 +197,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 
 //Delete Account % profile%%
 export const deleteAccount = () => async (dispatch) => {
-  if(!(window.confirm('Are you sure? This can Not be undone !!!'))) return
+  if (!window.confirm('Are you sure? This can Not be undone !!!')) return;
   try {
     const res = await axios.delete(`/api/profile/`);
 
@@ -227,10 +227,9 @@ export const deleteAccount = () => async (dispatch) => {
   }
 };
 
-
-
 //Get current users profile
 export const getProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get('/api/profile');
     dispatch({
@@ -249,4 +248,22 @@ export const getProfiles = () => async (dispatch) => {
   }
 };
 
-
+//Get a user profile by profile id
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
