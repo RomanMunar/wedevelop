@@ -12,13 +12,13 @@ const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile }
+  profile: { profile, loading }
 }) => {
   useEffect(() => {
     setAuthToken(localStorage.token);
     getCurrentProfile();
   }, [getCurrentProfile]);
-  return profile === null ? (
+  return loading === null ? (
     <Spinner />
   ) : (
     <Fragment>
