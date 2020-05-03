@@ -143,15 +143,17 @@ export const getPost = (post_id) => async (dispatch) => {
   }
 };
 
-// Add a comment on a post by post id
-export const addComment = (formData, post_id) => async (dispatch) => {
-  try {
-    const config = {
+// Add comment
+export const addComment = (postId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
       'Content-Type': 'application/json'
-    };
+    }
+  };
 
+  try {
     const res = await axios.post(
-      `/api/post/comment/${post_id}`,
+      `/api/post/comment/${postId}`,
       formData,
       config
     );
@@ -163,13 +165,9 @@ export const addComment = (formData, post_id) => async (dispatch) => {
 
     dispatch(setAlert('Comment Added', 'success'));
   } catch (err) {
-    console.log(err);
     dispatch({
       type: POST_ERROR,
-      payload: {
-        msg: err.response.statusText,
-        status: err.response.status
-      }
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
