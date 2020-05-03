@@ -8,7 +8,7 @@ import CommentForm from '../post/CommentForm';
 import { connect } from 'react-redux';
 import { getPost } from '../../actions/post';
 
-const Post = ({ getPost, post: { post, loading }, match }) => {
+const Post = ({ getPost, post: { post, loading }, match, isAuthenticated }) => {
   useEffect(() => {
     getPost(match.params.id);
     console.log(match.params.id);
@@ -21,7 +21,14 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
         Back To Posts
       </Link>
       <PostItem post={post} showActions={false} />
-      <CommentForm postId={post._id} />
+      {isAuthenticated == true ? (
+        <CommentForm postId={post._id} />
+      ) : (
+        <Fragment>
+          <Link To="/register">Signup</Link>{' or '}
+          <Link To="/login">Login</Link> to post a comment
+        </Fragment>
+      )}
       <div className="comments">
         {post.comments.map((comment) => (
           <CommentItem key={comment._id} comment={comment} postId={post._id} />
@@ -33,9 +40,11 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  isAuthenticated:PropTypes.bool.isRequired,
 };
 const mapStateToProps = (state) => ({
-  post: state.post
+  post: state.post,
+  isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps, { getPost })(Post);
