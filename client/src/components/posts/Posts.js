@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 
@@ -13,6 +14,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
+      {loading ? <Spinner /> : <Fragment></Fragment>}
     </Fragment>
   );
 };
