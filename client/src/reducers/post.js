@@ -6,7 +6,8 @@ import {
   DELETE_POST,
   ADD_POST,
   GET_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  DELETE_COMMENT
 } from '../actions/types';
 const initialState = {
   posts: [],
@@ -23,6 +24,14 @@ export default function (state = initialState, action) {
         ...state,
         post: [...state.post, payload],
         loading: false
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state.post,
+        comments: state.post.comments.filter(
+          (comment) => comment._id !== payload
+        ),
+        loading:false
       };
     case GET_POST:
       return {

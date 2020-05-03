@@ -8,7 +8,8 @@ import {
   DELETE_POST,
   ADD_POST,
   GET_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  DELETE_COMMENT
 } from './types';
 
 //Get all posts
@@ -161,6 +162,30 @@ export const addComment = (formData, post_id) => async (dispatch) => {
     });
 
     dispatch(setAlert('Comment Added', 'success'));
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
+
+// Delete a comment on a post by comment id
+
+export const deleteComment = (comment_id, post_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `/api/post/comment/${post_id}/${comment_id}`
+    );
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: comment_id
+    });
+    dispatch(setAlert('Comment Deleted', 'success'));
   } catch (err) {
     console.log(err);
     dispatch({
