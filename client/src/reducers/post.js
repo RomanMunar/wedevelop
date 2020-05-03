@@ -4,7 +4,8 @@ import {
   ADD_LIKE,
   REMOVE_LIKE,
   DELETE_POST,
-  ADD_POST
+  ADD_POST,
+  GET_POST
 } from '../actions/types';
 const initialState = {
   posts: [],
@@ -16,11 +17,17 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false
+      };
     case ADD_POST:
       return {
         ...state,
         posts: [payload, ...state.posts],
-        loading:false
+        loading: false
       };
     case GET_POSTS:
       return {

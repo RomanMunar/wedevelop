@@ -6,7 +6,8 @@ import {
   ADD_LIKE,
   REMOVE_LIKE,
   DELETE_POST,
-  ADD_POST
+  ADD_POST,
+  GET_POST
 } from './types';
 
 //Get all posts
@@ -110,6 +111,26 @@ export const addPost = (formData) => async (dispatch) => {
     dispatch(setAlert('Post Created', 'success'));
   } catch (err) {
     console.error(err);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
+
+//Get a post by post id
+export const getPost = (post_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/post/${post_id}`)
+    dispatch({
+      type:GET_POST,
+      payload: res.data
+    })
+  } catch (err) {
+    console.log(err);
     dispatch({
       type: POST_ERROR,
       payload: {
