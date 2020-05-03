@@ -2,6 +2,7 @@ import {
   GET_POSTS,
   POST_ERROR,
   ADD_LIKE,
+  REMOVE_LIKE,
 } from '../actions/types';
 const initialState = {
   posts: [],

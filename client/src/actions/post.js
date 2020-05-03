@@ -48,4 +48,24 @@ export const addLike = (post_id) => async (dispatch) => {
   }
 };
 
+//Remove a like
+
+export const removeLike = (post_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/post/unlike/${post_id}`);
+    dispatch({
+      type: REMOVE_LIKE,
+      payload: { post_id, likes: res.data }
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
 

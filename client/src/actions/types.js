@@ -18,4 +18,4 @@ export const GET_REPOS = 'GET_REPOS';
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
 export const ADD_LIKE = 'ADD_LIKE';
-
+export const REMOVE_LIKE = ' REMOVE_LIKE';
