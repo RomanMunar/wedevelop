@@ -1,6 +1,11 @@
 import axios from 'axios';
-import { setAlert } from './alert';
-import { GET_POSTS, POST_ERROR } from './types';
+import {
+  GET_POSTS,
+  POST_ERROR,
+  ADD_LIKE,
+  REMOVE_LIKE,
+  DELETE_POST
+} from './types';
 
 //Get all posts
 export const getPosts = () => async (dispatch) => {
@@ -21,3 +26,26 @@ export const getPosts = () => async (dispatch) => {
     });
   }
 };
+
+//Add a like
+
+export const addLike = (post_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/post/like/${post_id}`);
+    dispatch({
+      type: ADD_LIKE,
+      payload: { post_id, likes: res.data }
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
+
+
