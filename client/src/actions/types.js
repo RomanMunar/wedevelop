@@ -20,5 +20,6 @@ export const POST_ERROR = 'POST_ERROR';
 export const ADD_LIKE = 'ADD_LIKE';
 export const REMOVE_LIKE = ' REMOVE_LIKE';
 export const DELETE_POST = 'DELETE_POST';
-export const ADD_POST = 'ADD_POST';
 export const GET_POST = 'GET_POST';
+export const ADD_POST = 'ADD_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';

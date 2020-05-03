@@ -7,7 +7,8 @@ import {
   REMOVE_LIKE,
   DELETE_POST,
   ADD_POST,
-  GET_POST
+  GET_POST,
+  ADD_COMMENT
 } from './types';
 
 //Get all posts
@@ -124,11 +125,42 @@ export const addPost = (formData) => async (dispatch) => {
 //Get a post by post id
 export const getPost = (post_id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/post/${post_id}`)
+    const res = await axios.get(`/api/post/${post_id}`);
     dispatch({
-      type:GET_POST,
+      type: GET_POST,
       payload: res.data
-    })
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    });
+  }
+};
+
+// Add a comment on a post by post id
+export const addComment = (formData, post_id) => async (dispatch) => {
+  try {
+    const config = {
+      'Content-Type': 'application/json'
+    };
+
+    const res = await axios.post(
+      `/api/post/comment/${post_id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Comment Added', 'success'));
   } catch (err) {
     console.log(err);
     dispatch({

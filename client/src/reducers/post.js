@@ -5,7 +5,8 @@ import {
   REMOVE_LIKE,
   DELETE_POST,
   ADD_POST,
-  GET_POST
+  GET_POST,
+  ADD_COMMENT
 } from '../actions/types';
 const initialState = {
   posts: [],
@@ -17,6 +18,12 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: [...state.post, payload],
+        loading: false
+      };
     case GET_POST:
       return {
         ...state,
