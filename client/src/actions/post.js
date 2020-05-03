@@ -71,10 +71,10 @@ export const removeLike = (post_id) => async (dispatch) => {
 
 export const deletePost = (post_id) => async (dispatch) => {
   try {
-    await axios.put(`/api/post/${post_id}`);
+    await axios.delete(`/api/post/${post_id}`);
     dispatch({
       type: DELETE_POST,
-      payload: { post_id }
+      payload: post_id
     });
   } catch (err) {
     console.error(err);

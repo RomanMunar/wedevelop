@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
         loading: false
       };
     case ADD_LIKE:
+    case REMOVE_LIKE:
       return {
         ...state,
         posts: state.posts.map((post) =>
@@ -29,6 +30,12 @@ export default function (state = initialState, action) {
             ? { ...post, likes: payload.likes }
             : post
         ),
+        loading: false
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
         loading: false
       };
     case POST_ERROR:
