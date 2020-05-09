@@ -33,3 +33,22 @@ npm install
 5. Run the application with   ```npm start```
 6. Open up you browser and type in the url [https://localhost:3000](https://localhost:3000)
 
+
+## Built With
+
+* [ReactJS](http://reactjs.org/) - The web framework used
+* [Redux](https://redux.org/) - Application level State  Management
+* [NodeJS](https://express.js) - Runtime environment used in the backend
+* [ExpressJS](https://rometools.github.io/rome/) - A minimal NodeJS framework focused on rapid API development
+* [JWT](https://jwt.io) - The authentication system used.
+* [MongoDB](https://mongodb.com) - A NoSQL database, focused on performance and fast feature development.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Documentations
+* Stack Overflow
+* Brad Traversy
