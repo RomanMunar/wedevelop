@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+
 // @route   GET api/profile/me
 // @desc    Get current users profile
 // @access  Private
@@ -185,7 +186,6 @@ router.put(
 // @route    DELETE api/profile/experience/:exp_id
 // @desc     Delete experience from profile
 // @access   Private
-
 router.delete('/experience/:exp_id', auth, async (req, res) => {
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
@@ -263,7 +263,6 @@ router.put(
 // @route    DELETE api/profile/education/:edu_id
 // @desc     Delete education from profile
 // @access   Private
-
 router.delete('/education/:edu_id', auth, async (req, res) => {
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });

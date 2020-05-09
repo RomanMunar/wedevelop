@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator');
 const config = require('config');
 
 const User = require('../../models/User');
+
 // @route   POST api/users
 // @desc    Login user
 // @access  Public
@@ -148,4 +149,5 @@ router.post(
     }
   }
 );
+
 module.exports = router;
